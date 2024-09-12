@@ -1,14 +1,16 @@
-import { IsNotEmpty, IsString, MinLength, IsNumber, Min, IsOptional } from 'class-validator';
+import { IsNotEmpty, IsString, MinLength, IsNumber, Min, IsOptional, MaxLength } from 'class-validator';
 
 export class CreateProductoDto {
-  
+
   @IsNotEmpty()
   @IsString()
   @MinLength(3, { message: 'El nombre debe tener al menos 3 caracteres.' })
+  @MaxLength(50, { message: 'El nombre no debe exceder los 50 caracteres.' })
   nombre: string;
 
-  @IsOptional() 
+  @IsOptional()
   @IsString()
+  @MaxLength(200, { message: 'La descripción no debe exceder los 200 caracteres.' })
   descripcion?: string;
 
   @IsNumber()
